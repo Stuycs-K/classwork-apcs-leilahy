@@ -10,6 +10,11 @@ public class ArrayDemo{
     int[][] arr2 = {{1,2,3},{4,5,6},{7,8,9}};
     System.out.println("Expected: " + Arrays.toString(arr1) + "  Output: " + arrToString(arr1));
     System.out.println("Expected: " + Arrays.deepToString(arr2) + "  Output: " + arrToString(arr2));
+    //Test cases for countZeros2D
+
+    // Test Cases for arr2DSum
+
+    //
 
   }
 
