@@ -6,6 +6,11 @@ public class ArrayDemo{
     //Compare Arrays.toString(yourArray) to YOUR arrayToString() method to make sure yours is correct
     //do not use any other Arrays.method()
     //Test cases for arrToString
+    int[] arr1 = {1,2,3};
+    int[][] arr2 = {{1,2,3},{4,5,6},{7,8,9}};
+    System.out.println("Expected: " + Arrays.toString(arr1) + "  Output: " + arrToString(arr1));
+    System.out.println("Expected: " + Arrays.deepToString(arr2) + "  Output: " + arrToString(arr2));
+
   }
 
   //0. Include your prior methods to help you print a 1D/2D array of ints.
