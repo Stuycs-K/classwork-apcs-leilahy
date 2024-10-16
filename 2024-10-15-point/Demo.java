@@ -35,5 +35,11 @@ public class Demo{
     System.out.println( p6.distanceTo(p3)); // Expected 5
     System.out.println( p6.distanceTo(p7)); // Expected 13
     System.out.println( p6.distanceTo(p8)); // Expected 17
+    // making the equilateral triangle with side lengths 1 
+    Point p9 = new Point(1,0);
+    Point p10 = new Point (0.5,0.5 * Math.sqrt(3));
+    System.out.println( distance(p6,p9));
+    System.out.println( distance(p6,p10));
+    System.out.println( distance(p9,p10));
   }
 }
