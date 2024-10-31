@@ -12,5 +12,10 @@ class Main {
       while(input.hasNext()){
         System.out.println(input.next());
       }
+
+      Scanner sc1 = new Scanner("This is a bunch of words");
+      while (sc1.hasNext()){
+        System.out.println(sc1.next());
+      }
     }
   }
