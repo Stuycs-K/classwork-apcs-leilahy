@@ -7,6 +7,9 @@ public class TriangleTester {
     int side0 = Integer.parseInt(sides[0]);
     int side1 = Integer.parseInt(sides[1]);
     int side2 = Integer.parseInt(sides[2]);
+    if (side0 + side1 > side2 && side0 + side2 > side1 && side1 + side2 > side0){
+      System.out.println("Valid Triangle");
+    }
     return (side0 + side1 > side2 && side0 + side2 > side1 && side1 + side2 > side0);
   }
 
@@ -23,7 +26,7 @@ public class TriangleTester {
         String[] vals = line.split(" ");
         if (isTriangle(vals)) count++;
       }
-
+      input.close();
       return count;
 
       //input.close();//releases the file from your program
@@ -43,12 +46,21 @@ public class TriangleTester {
       int count = 0;
 
       while (input.hasNextLine()){
-        String[] line1 = input.nextLine().split("");
-        String[] line2 = input.nextLine().split("");
-        String[] line3 = input.nextLine().split("");
+        String line1 = input.nextLine().trim();
+        String line2 = input.nextLine().trim();
+        String line3 = input.nextLine().trim();
+
+        if (line1.isEmpty() || line2.isEmpty() || line3.isEmpty()) continue;
+
+        String[] sides1 = line1.split(" ");
+        String[] sides2 = line2.split(" ");
+        String[] sides3 = line3.split(" ");
+
+        if (sides1.length != 3 || sides2.length != 3 || sides3.length != 3) continue;
 
         for (int i = 0; i < 3; i++){
-          String[] currTri = {line1[i], line2[i], line3[i]};
+          System.out.println("Sides: " + sides1[i] +" "+ sides2[i] +" "+ sides3[i]);
+          String[] currTri = {sides1[i], sides2[i], sides3[i]};
           if (isTriangle(currTri)) count++;
         }
       }
@@ -57,13 +69,14 @@ public class TriangleTester {
       return count;
     }catch (FileNotFoundException ex) {
       System.out.println(filename);
-      return 0; //you can return from a void function just don't put a value.
+      return -1; //you can return from a void function just don't put a value.
     }
   }
 
 
   public static void main(String[] args) {
     System.out.println("Expected 2: " + countTrianglesA("inputA.txt"));
+//    System.out.println("Expected 2: " + countTrianglesB("test.txt"));
     System.out.println(countTrianglesB("inputTri.txt"));
   }
 }
