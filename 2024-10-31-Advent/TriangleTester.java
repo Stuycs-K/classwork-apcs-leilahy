@@ -30,13 +30,40 @@ public class TriangleTester {
 
     } catch (FileNotFoundException ex) {
       //File not found what should you do?
-      System.out.println("ReadFile.java");
+      System.out.println(filename);
+      return 0; //you can return from a void function just don't put a value.
+    }
+  }
+
+  public static int countTrianglesB(String filename){
+    try{
+      File file = new File(filename);
+      Scanner input = new Scanner(file);
+
+      int count = 0;
+
+      while (input.hasNextLine()){
+        String[] line1 = input.nextLine().split("");
+        String[] line2 = input.nextLine().split("");
+        String[] line3 = input.nextLine().split("");
+
+        for (int i = 0; i < 3; i++){
+          String[] currTri = {line1[i], line2[i], line3[i]};
+          if (isTriangle(currTri)) count++;
+        }
+      }
+
+      input.close();
+      return count;
+    }catch (FileNotFoundException ex) {
+      System.out.println(filename);
       return 0; //you can return from a void function just don't put a value.
     }
   }
 
 
   public static void main(String[] args) {
-    System.out.println("Expected 2: " + countTrianglesA("inputTri.txt"));
+    System.out.println("Expected 2: " + countTrianglesA("inputA.txt"));
+    System.out.println(countTrianglesB("inputTri.txt"));
   }
 }
