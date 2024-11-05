@@ -4,10 +4,10 @@ import java.util.Scanner;
 
 public class TriangleTester {
   public static boolean isTriangle(String[] sides){
-    int sum1 = sides[0] + sides[1];
-    int sum2 = sides[0] + sides[2];
-    int sum3 = sides[1] + sides[2];
-    return (sum1 > sides[3] || sum2 > sides[1] || sum3 > sides[2]);
+    int side0 = Integer.parseInt(sides[0]);
+    int side1 = Integer.parseInt(sides[1]);
+    int side2 = Integer.parseInt(sides[2]);
+    return (side0 + side1 > side2 && side0 + side2 > side1 && side1 + side2 > side0);
   }
 
   public static int countTrianglesA(String filename){
@@ -26,7 +26,7 @@ public class TriangleTester {
 
       return count;
 
-      input.close();//releases the file from your program
+      //input.close();//releases the file from your program
 
     } catch (FileNotFoundException ex) {
       //File not found what should you do?
@@ -37,6 +37,6 @@ public class TriangleTester {
 
 
   public static void main(String[] args) {
-    System.out.println(countTrianglesA("inputTri.txt"));
+    System.out.println("Expected 2: " + countTrianglesA("inputTri.txt"));
   }
 }
