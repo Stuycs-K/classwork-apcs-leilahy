@@ -34,7 +34,7 @@ public class ArrayListPractice {
 //a[0], b[0], a[1], b[1]...
 //If one list is longer than the other, just attach the remaining values to the end
   ArrayList<String> ans = new ArrayList<String>(a.size() + b.size());
-  for (int i = 0; i < Math.min(a.size() - 1, b.size() - 1); i++){
+  for (int i = 0; i < Math.min(a.size() , b.size() ); i++){
     ans.add(a.get(i));
     ans.add(b.get(i));
   }
@@ -65,6 +65,30 @@ public class ArrayListPractice {
     System.out.println(b);
     System.out.println(c);
     System.out.println(mixLists(b,c));
+
+    // testing very large data sets
+    System.out.println("--------Testing very large data sets----------");
+    System.out.println();
+    System.out.println(">> Testing replaceEmpty and makeReversedList");
+    System.out.println("original lst");
+    ArrayList<String> d = createRandomArray(200000);
+    System.out.println(d.subList(0,10) + "..." + d.subList(199990,200000));
+    replaceEmpty(d);
+    System.out.println("testing replaceEmpty ");
+    System.out.println(d.subList(0,10) + "..." + d.subList(199990,200000));
+    System.out.println("testing makeReversedList");
+    System.out.println(makeReversedList(d).subList(0,10) + "..." + makeReversedList(d).subList(199990,200000));
+
+    System.out.println();
+    System.out.println(">> Testing mixLists");
+    System.out.println("original lsts");
+    ArrayList<String> e = createRandomArray(200000);
+    ArrayList<String> f = createRandomArray(200000);
+    System.out.println(e.subList(0,10) + "..." + e.subList(199990,200000));
+    System.out.println(f.subList(0,10) + "..." + f.subList(199990,200000));
+    ArrayList<String> result = mixLists(e,f);
+    System.out.println("mixed lsts");
+    System.out.println(result.subList(0,10) + "..." + result.subList(199990,200000));
 
 
   }
