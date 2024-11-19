@@ -26,17 +26,20 @@ public class Taxicab {
         }
         else facing = (facing + 3) % 4;
         // finding direction
+        int magnitude = Integer.parseInt(inp[i].substring(1));
+        System.out.println("Moving " + facing + " by " + magnitude);
+
         if (facing == 0){
-          y += Integer.parseInt(inp[i].substring(1));
+          y += magnitude;
         }
         else if (facing == 1){
-          x += Integer.parseInt(inp[i].substring(1));
+          x += magnitude;
         }
         else if (facing == 2){
-          y -= Integer.parseInt(inp[i].substring(1));
+          y -= magnitude;
         }
         else if (facing == 3){
-          x -= Integer.parseInt(inp[i].substring(1));
+          x -= magnitude;
         }
       }
 
