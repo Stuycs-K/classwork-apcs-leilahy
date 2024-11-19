@@ -18,19 +18,27 @@ public class TriangleTester {
 
   public static int countTrianglesA(String filename){
     try {
-      File file = new File(filename);
-      Scanner input = new Scanner(file);
-      int count = 0;
+        File file = new File(filename);
+        Scanner input = new Scanner(file);
 
-      while(input.hasNextLine()){
-        if (isTriangle(input.nextInt(), input.nextInt(), input.nextInt())) {
-          count++;
+        int count = 0;
+
+        while(input.hasNextLine()){
+          if (input.hasNextInt()) {
+                int a = input.nextInt();
+                int b = input.nextInt();
+                int c = input.nextInt();
+                if (isTriangle(a,b,c)){
+                    count++;
+                }
+            }
+            else input.nextLine();
         }
-      }
-      return count;
+        input.close();
+        return count;
     } catch (FileNotFoundException ex) {
-      System.out.println(filename);
-      return -1;
+        System.out.println(filename + " not found");
+        return -1;
     }
   }
 
@@ -99,8 +107,8 @@ public class TriangleTester {
   public static void main(String[] args) {
     System.out.println("Should return true: " + isTriangle(3,4,5));
     System.out.println("Should return true: " + isTriangle(8,15,17));
-    //System.out.println(countTrianglesA("input1.txt"));
+    System.out.println(countTrianglesA("input1.txt"));
 //    System.out.println("Expected 2: " + countTrianglesB("test.txt"));
-    System.out.println(countTrianglesB("inputTri.txt"));
+    //System.out.println(countTrianglesB("inputTri.txt"));
   }
 }
