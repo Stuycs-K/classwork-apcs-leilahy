@@ -3,7 +3,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class TriangleTester {
-  public static boolean isTriangle(String[] sides){
+  /*public static boolean isTriangle(String[] sides){
     int side0 = Integer.parseInt(sides[0]);
     int side1 = Integer.parseInt(sides[1]);
     int side2 = Integer.parseInt(sides[2]);
@@ -11,9 +11,30 @@ public class TriangleTester {
       System.out.println("Valid Triangle");
     }
     return (side0 + side1 > side2 && side0 + side2 > side1 && side1 + side2 > side0);
+  }*/
+  public static boolean isTriangle(int a, int b, int c){
+    return (a + b > c) && (a + c > b) && (b + c > a);
   }
 
   public static int countTrianglesA(String filename){
+    try {
+      File file = new File(filename);
+      Scanner input = new Scanner(file);
+      int count = 0;
+
+      while(input.hasNextLine()){
+        if (isTriangle(input.nextInt(), input.nextInt(), input.nextInt())) {
+          count++;
+        }
+      }
+      return count;
+    } catch (FileNotFoundException ex) {
+      System.out.println(filename);
+      return -1;
+    }
+  }
+
+  /*public static int countTrianglesA(String filename){
     //2 Opening a file requires a try/catch
     try {
       File file = new File(filename);//1
@@ -37,6 +58,7 @@ public class TriangleTester {
       return 0; //you can return from a void function just don't put a value.
     }
   }
+  */
 
   public static int countTrianglesB(String filename){
     try{
@@ -61,7 +83,7 @@ public class TriangleTester {
         for (int i = 0; i < 3; i++){
           System.out.println("Sides: " + sides1[i] +" "+ sides2[i] +" "+ sides3[i]);
           String[] currTri = {sides1[i], sides2[i], sides3[i]};
-          if (isTriangle(currTri)) count++;
+          //if (isTriangle(currTri)) count++;
         }
       }
 
@@ -75,7 +97,9 @@ public class TriangleTester {
 
 
   public static void main(String[] args) {
-    System.out.println("Expected 2: " + countTrianglesA("inputA.txt"));
+    System.out.println("Should return true: " + isTriangle(3,4,5));
+    System.out.println("Should return true: " + isTriangle(8,15,17));
+    //System.out.println(countTrianglesA("input1.txt"));
 //    System.out.println("Expected 2: " + countTrianglesB("test.txt"));
     System.out.println(countTrianglesB("inputTri.txt"));
   }
