@@ -21,8 +21,11 @@ public class day2 {
       for (int i = 0; i < lines.size(); i++){
         for (int j = 0; i < lines.get(i).length() - 1; i++){
           String currDir = lines.get(i).substring(i,i+1);
-          if (currDir.equals("U")) {
+          if (currDir.equals("U") && currNum > 3) {
             currNum -= 3;
+          }
+          if (currDir.equals("D") && currNum < 7) {
+            currNum += 3;
           }
         }
         ans += ans;
