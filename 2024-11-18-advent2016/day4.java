@@ -22,9 +22,11 @@ public class day4 {
 
         // get 5 common letters
         String commonLetters = line.substring(line.length()-6,line.length()-1);
+        System.out.println("common letters: " + commonLetters);
 
         // get sector ID
         int sectorID = Integer.parseInt(line.substring(line.length()-10,line.length()-7));
+        System.out.println("sectorID: " + sectorID);
 
         // get common letters
         String[] currLine = line.split("-");
@@ -34,6 +36,18 @@ public class day4 {
         }
 
         // then make loops and stuff checking 5 most common thingies
+        ArrayList<String> letters = new ArrayList<String>();
+        ArrayList<Integer> letterCount = new ArrayList<Integer>();
+
+        for (int k = 0; k < lettersMashed.length(); k++){
+          String currLetter = lettersMashed.substring(k,k+1);
+          if (letters.indexOf(currLetter) != -1){
+            letterCount.set(letters.indexOf(currLetter),letterCount.get(letters.indexOf(currLetter)) + 1);
+          }
+          else {
+            letters.add(currLetter);
+          }
+        }
 
 
 
