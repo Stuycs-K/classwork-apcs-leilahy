@@ -15,25 +15,28 @@ public class day2 {
       }
 
       String ans = "";
-
       int currNum = 5;
 
       for (int i = 0; i < lines.size(); i++){
-        for (int j = 0; i < lines.get(i).length() - 1; i++){
-          String currDir = lines.get(i).substring(i,i+1);
+        String line = lines.get(i);
+        for (int j = 0; j < line.length(); j++){
+          String currDir = line.substring(j,j+1);
+
           if (currDir.equals("U") && currNum > 3) {
             currNum -= 3;
           }
-          if (currDir.equals("D") && currNum < 7) {
+          else if (currDir.equals("D") && currNum < 7) {
             currNum += 3;
           }
+          else if (currDir.equals("L") && currNum % 3 != 1){
+            currNum--;
+          }
+          else if (currDir.equals("R") && currNum % 3 != 0){
+            currNum++;
+          }
         }
-        ans += ans;
+        ans += currNum;
       }
-
-
-
-
       return ans;
 
     } catch (FileNotFoundException ex) {
@@ -44,6 +47,6 @@ public class day2 {
   }
 
   public static void main(String[] args){
-    System.out.println();
+    System.out.println(solver("input2.txt"));
   }
 }
