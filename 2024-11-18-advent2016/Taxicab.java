@@ -17,7 +17,7 @@ public class Taxicab {
       int x = 0;
       int y = 0;
 
-      int facing = 0;
+      int facing = 1;
 
       for (int i = 0; i < inp.length; i++){
         // dealing w direction
@@ -27,7 +27,6 @@ public class Taxicab {
         else facing = (facing + 3) % 4;
         // finding direction
         int magnitude = Integer.parseInt(inp[i].substring(1));
-        System.out.println("Moving " + facing + " by " + magnitude);
 
         if (facing == 0){
           y += magnitude;
@@ -44,7 +43,7 @@ public class Taxicab {
       }
 
       input.close();
-      return x + y;
+      return Math.abs(x + y);
 
     } catch (FileNotFoundException ex) {
       //File not found what should you do?
