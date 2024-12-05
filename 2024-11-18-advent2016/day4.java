@@ -4,6 +4,9 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class day4 {
+  public static void main(String[] args){
+    System.out.println(sumSector("input4.txt"));
+  }
   public static int sumSector(String filename){
     try{
       File file = new File(filename);
@@ -21,8 +24,8 @@ public class day4 {
         String line = lines.get(i);
 
         // get 5 common letters
-        String commonLetters = line.substring(line.length()-6,line.length()-1);
-        System.out.println("common letters: " + commonLetters);
+        String checksum = line.substring(line.length()-6,line.length()-1);
+        System.out.println("common letters: " + checksum);
 
         // get sector ID
         int sectorID = Integer.parseInt(line.substring(line.length()-10,line.length()-7));
@@ -46,63 +49,45 @@ public class day4 {
           }
           else {
             letters.add(currLetter);
+            letterCount.add(1);
           }
-        }
-
-
-
-
-
-
-
-
-
-
-
-        // blablabla below retstarting
-        for (int j = 0; j < line.length(); j++){
-
-          String lowerLetters = "";
-          // puts all the lowercase letters together for easier counting
-          for (int k = 0; k < currLine.length - 2; k++){
-            lowerLetters += currLine[k];
+          // find 5 greatest letters thingies
+          int[][] indexed = new int[letterCount.size()][2];
+          for (int l = 0; l < letterCount.size(); l++) {
+            indexed[l][0] = letterCount.get(l);
+            indexed[l][1] = l;
           }
-          // count letters oh no
-          char[] uniqueChars = new char[lowerLetters.length()];
-          int[] charCount = new int[lowerLetters.length()];
+          int[] top5 = new int[5];
+          boolean[] used = new boolean[letterCount.size()];
 
-          int uniqueCount = 0;
-          // looping thorugh the string
-          for (int l = 0; l < lowerLetters.length(); l++){
-            char currChar = lowerLetters.charAt(l);
-            boolean counted = false;
-            // if counted increase count
-            for (int m = 0; m < uniqueCount; m++){
-              if(uniqueChars[m] == currChar){
-                charCount[m]++;
-                counted = true;
-              }
+          for (int m = 0; m < 5; m++) {
+            int maxIndex = -1;
+            int maxValue = -1;
+            for (int n = 0; n < indexed.length; n++) {
+                if (!(used[n]) && indexed[n][0] > maxValue) {
+                    maxValue = indexed[n][0];
+                    maxIndex = n;
+                }
             }
-            // if not counted
-            if (!counted){
-              uniqueChars[uniqueCount] = currChar;
-              charCount[uniqueCount] = 1;
-              uniqueCount++;
-            }
+            top5[m] = indexed[maxIndex][1];
+            used[maxIndex] = true;
           }
-          // check 5 most common letters
+
+          int match = 0;
+          for (int o = 0; o < 5; o++){
+            if (checksum.contains(letters.get(top5[o]))) match++;
+          }
+
+          if (match == 5) sum += sectorID;
         }
       }
 
-      return 0;
+      return sum;
 
     } catch (FileNotFoundException ex) {
       //File not found what should you do?
       System.out.println(filename);
       return -1;
       }
-  }
-  public static void main(String[] args){
-    System.out.println(sumSector("input3.txt"));
   }
 }
