@@ -27,19 +27,19 @@ public class Warrior extends Adventurer {
   }
 
   public String attack(Adventurer other){
-    int damage = (int)(Math.random() * 20 + 5);
+    int damage = (int)(Math.random() * 2 + 5);
     other.applyDamage(damage);
     return this.getName() + " stabs " + other.getName() + " for " + damage + "hp.";
   }
 
   public String support(Adventurer other){
-    int healed = - (int)(Math.random() * 5);
+    int healed = - (int)(Math.random() * 2);
     other.applyDamage(healed);
     return this.getName() + " gives a battle cry for " + other.getName() + " restoring " + healed + "hp.";
   }
 
   public String support(){
-    int healed = - (int)(Math.random() * 5);
+    int healed = - (int)(Math.random() * 2);
     this.applyDamage(healed);
     return this.getName() + " gets into battle position! Restores " + healed + "hp.";
   }
