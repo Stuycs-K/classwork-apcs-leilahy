@@ -33,20 +33,25 @@ public class Warrior extends Adventurer {
   }
 
   public String support(Adventurer other){
-    int healed = - (int)(Math.random() * 2);
-    other.applyDamage(healed);
+    int healed =  (int)(Math.random() * 2);
+    other.applyDamage(-healed);
     return this.getName() + " gives a battle cry for " + other.getName() + " restoring " + healed + "hp.";
   }
 
   public String support(){
-    int healed = - (int)(Math.random() * 2);
-    this.applyDamage(healed);
+    int healed =  (int)(Math.random() * 2);
+    this.applyDamage(-healed);
     return this.getName() + " gets into battle position! Restores " + healed + "hp.";
   }
 
   public String specialAttack(Adventurer other){
-    int damage = (int)(Math.random() * 3);
-    other.applyDamage(damage);
-    return this.getName() + " glares at " + other.getName() + " for " + damage + "hp.";
-  }
+    if (this.getSpecial() != 0){
+      int damage = (int)(Math.random() * 3);
+      this.setSpecial(this.getSpecial() - 1);
+      other.applyDamage(damage);
+      return this.getName() + " glares at " + other.getName() + " for " + damage + "hp.";
+    }
+    return "unable to " + this.getSpecialName();
+    }
+
 }
