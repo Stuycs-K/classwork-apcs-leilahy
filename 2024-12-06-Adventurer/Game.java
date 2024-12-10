@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Game {
-  public void main(String[] args){
+  public static void main(String[] args){
     Adventurer player = new Warrior("Johnny");
     Adventurer enemy = new CodeWarrior("John");
 
@@ -20,7 +20,7 @@ public class Game {
 
   }
 
-  public void printStats(Adventurer a){
+  public static void printStats(Adventurer a){
     String printMe = "";
     printMe += a.getName() + ", " + a.getHP() + "/" + a.getmaxHP() + " HP, "
     + a.getSpecial() + "/" + a.getSpecialMax() + " " + a.getSpecialName();
